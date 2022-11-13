@@ -23,11 +23,11 @@ export function bodyClassname(config: Config): Config {
 
 function BodyClassname() {
   // @ts-expect-error Slug is missing in types
-  const { slug } = useDocumentInfo()
+  const { type, slug } = useDocumentInfo()
   useLayoutEffect(() => {
-    if (!slug) return
-    document.body.classList.add('collection-' + slug)
-    return () => document.body.classList.remove('collection-' + slug)
+    if (!type || !slug) return
+    document.body.classList.add(type + '-' + slug)
+    return () => document.body.classList.remove(type + '-' + slug)
   }, [slug])
   return null
 }
